@@ -1,12 +1,8 @@
-section .bss
-    stack resb 100
 
-section .data
-    msg db 'Hello,World!',0xa,0  ;定义要输出的字符串
-    
-section .text
-    global main
+msg db 'Hello,World!',0ah,0
+len equ $-msg
 
+global main
 main:
     ;push ebp
     ;mov ebp, esp
@@ -14,7 +10,7 @@ main:
     mov eax, 4
     mov ebx, 1
     mov ecx, msg
-    mov edx, 13
+    mov edx, len
     int 0x80
 
 
