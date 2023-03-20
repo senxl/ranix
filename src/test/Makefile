@@ -1,7 +1,7 @@
 
 
 test.s: test.c
-	gcc -S test.c -o test.s
+	gcc -m32 -S test.c -o test.s
 
 .PHONY: clean
 clean:

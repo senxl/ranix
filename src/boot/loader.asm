@@ -4,7 +4,7 @@ dw 0x55aa	;魔数检错
 mov si, msg
 call print
 
-xchg bx, bx; 断点
+; xchg bx, bx; 断点
 
 detect_memory:
     ; 将 ebx 置为 0
@@ -27,7 +27,7 @@ detect_memory:
 
     ; 如果 CF 置位，表示出错
     jc error
-	xchg bx, bx; 断点
+	; xchg bx, bx; 断点
 
     ; 将缓存指针指向下一个结构体
     add di, cx
