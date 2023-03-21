@@ -2,8 +2,8 @@
 
 typedef char *va_list;
 
-#define va_start(ap, v) (ap = (va_list)&v + sizeof(char *))
-#define va_arg(ap, t) (*(t *)((ap += sizeof(char *)) - sizeof(char *)))
+#define va_start(ap, v) (ap = (va_list)&v)
+#define va_arg(ap, t) (*(t *)(ap += sizeof(char *)))
 #define va_end(ap) (ap = (va_list)0)
 
 void test_args(int cnt, ...)
@@ -21,28 +21,29 @@ void test_args(int cnt, ...)
     
 }
 
-void test(int cnt0, ...)
-{
-    int i=0;
-    int *p = &i;
-    p += 8;
 
-
-    int stack = *p;
-
-    for (i = 0; i < 3; i++)
-    {
-        printf("%d\n", *p);
-        p++;
-    }
-    
-    return;
-}
 
 int main()
 {
-    test(5,10,15);
-    printf("hello world!\n");
-    test_args(3, 1, '1', 0xaa);
+    // test_args(3, 1, '1', 0xaa);
+    int ary[] = {5,2,3,4,5,6};
+
+    int count = *ary;
+    int *ap = ary+1;
+
+
+    // printf("%p\n", ap);
+    while (count--)
+    {
+        // printf("%d\n", (*(int *)((ap += 1) - 1)));
+    }
+    // printf("%p\n", ap);
+
+    
+    ap = (int *)0;
+    // printf("%p\n", ap);
+
+    test_args(5,2,3,4,5,6);
+
     return 0;
 }
