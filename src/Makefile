@@ -57,8 +57,11 @@ $(BUILD)/master.img: $(BUILD)/boot/boot.bin \
 	dd if=$(BUILD)/boot/loader.bin of=$@ bs=512 count=4 seek=2 conv=notrunc
 	dd if=$(BUILD)/system.bin of=$@ bs=512 count=200 seek=10 conv=notrunc
 
-.PHONY: test
 test: $(BUILD)/master.img
+
+.PHONY: clean
+clean:
+	rm -rf $(BUILD)
 
 .PHONY: bochs
 bochs: $(BUILD)/master.img
