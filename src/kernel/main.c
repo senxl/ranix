@@ -33,9 +33,9 @@ void test()
     // assert(1<2);
     // panic("Run Error!");
 
-    BMB;
+    // BMB;
     DEBUGK(message);
-    BMB;
+    // BMB;
     
 }
 
