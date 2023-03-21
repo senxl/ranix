@@ -140,7 +140,7 @@ static void command_cr()
 void console_write(char *buf, u32 count)
 {
     char ch;
-    while (--count)
+    while (count--)
     {
         ch = *buf++;
         switch (ch)
@@ -164,10 +164,10 @@ void console_write(char *buf, u32 count)
             pos++;
 
             x++;
-            set_cursor();
             break;
         }
     }
+    set_cursor();
 }
 void console_init()
 {
