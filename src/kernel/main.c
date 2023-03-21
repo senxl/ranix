@@ -35,7 +35,7 @@ void test()
 
     BMB;
     DEBUGK(message);
-    // BMB;
+    BMB;
     
 }
 
