@@ -35,6 +35,9 @@ $(BUILD)/kernel.bin: \
 	$(BUILD)/kernel/printk.o \
 	$(BUILD)/kernel/assert.o \
 	$(BUILD)/kernel/debug.o \
+	$(BUILD)/kernel/global.o \
+	$(BUILD)/kernel/task.o \
+	$(BUILD)/kernel/schedule.o \
 	$(BUILD)/lib/string.o \
 	$(BUILD)/lib/vsprintf.o \
 
@@ -74,16 +77,20 @@ bochsg: $(BUILD)/master.img
 .PHONY: qemu
 qemu: $(BUILD)/master.img
 	qemu-system-i386 \
-	 -m 32M -boot c -hda $<
+	-m 32M \
+	-boot c \
+	-hda $<
 
 .PHONY: qemug
 qemug: $(BUILD)/master.img
-	qemu-system-i386 -s -S \
-	 -m 32M -boot c -hda $<
-
+	qemu-system-i386 \
+	-s -S \
+	-m 32M \
+	-boot c \
+	-hda $<
 
 $(BUILD)/master.vmdk: $(BUILD)/master.img
-	qemu-img.exe convert -O vmdk $< $@
+	qemu-img convert -O vmdk $< $@
 
-.PHONY: vmdk
+.PHONY:vmdk
 vmdk: $(BUILD)/master.vmdk

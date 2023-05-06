@@ -112,11 +112,11 @@ static void scroll_up()
     }
     else
     {
-        // memcpy((void *)MEM_BASE, (void *)screen, SCR_SIZE);
-        // pos -= (screen - MEM_BASE);
-        // screen = MEM_BASE;
+        memcpy((void *)MEM_BASE, (void *)screen, SCR_SIZE);
+        pos -= (screen - MEM_BASE);
+        screen = MEM_BASE;
 
-        console_clear();
+        //console_clear();
     }
     set_screen();
     

@@ -7,6 +7,7 @@
 #include <ranix/stdarg.h>
 #include <ranix/assert.h>
 #include <ranix/debug.h>
+#include <ranix/global.h>
 
 char message[] = "However mean your life is, meet it and live it;\n";
 
@@ -33,9 +34,10 @@ void test()
     // assert(1<2);
     // panic("Run Error!");
 
-    // BMB;
+    BMB;
     DEBUGK(message);
-    // BMB;
+    gdt_init();
+    BMB;
     
 }
 
@@ -44,6 +46,8 @@ void kernel_init()
 
     console_init();
     test();
+    task_init();
     
+    DEBUGK("Ranix Run End!");
     return;
 }
